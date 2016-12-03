@@ -69,10 +69,10 @@ bintray {
     configurations = ['archives'] //When uploading configuration files
     pkg {
         repo = 'maven'
-        name = 'android-utilss'
+        name = 'android-utils'
         userOrg = 'saschpe'
         websiteUrl = siteUrl
-        issueTrackerUrl = 'https://github.com/saschpe/android-utilss/issues'
+        issueTrackerUrl = 'https://github.com/saschpe/android-utils/issues'
         vcsUrl = gitUrl
         licenses = ['Apache-2.0']
         desc = descr
@@ -80,7 +80,7 @@ bintray {
         publish = true
         publicDownloadNumbers = true
 
-        githubRepo = 'saschpe/android-utilss'
+        githubRepo = 'saschpe/android-utils'
         githubReleaseNotesFile = 'README.md'
 
         version {
