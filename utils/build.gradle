@@ -56,7 +56,7 @@ version = android.defaultConfig.versionName
 ext {
     siteUrl = 'https://github.com/saschpe/android-utils'
     gitUrl = 'https://github.com/saschpe/android-utils.git'
-    descr = 'Useful for debugging purposes, because all QA / beta tester screenshots will include build type, product flavor and additional information provided by you.'
+    descr = 'My often used Android classes.'
 }
 
 Properties properties = new Properties()
