@@ -24,8 +24,8 @@ android {
         applicationId 'com.example.utils'
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 140100
-        versionName '1.0.0'
+        versionCode 140101
+        versionName '1.0.1'
         archivesBaseName = "${applicationId}-${versionName}"
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
