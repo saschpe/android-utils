@@ -14,4 +14,28 @@
  * limitations under the License.
  */
 
-include ':utils', ':app'
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.1"
+
+    defaultConfig {
+        applicationId 'com.example.utils'
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 140100
+        versionName '1.0.0'
+        archivesBaseName = "${applicationId}-${versionName}"
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':utils')
+    compile 'com.android.support:appcompat-v7:25.0.1'
+}
