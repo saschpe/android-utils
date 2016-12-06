@@ -4,9 +4,106 @@
 
 This library collects a range of Android classes that I often use in projects.
 
+# Usage
+Avoid adding padding to recycler view item XML files and use item decoration
+instead. The class *SpacesItemDecoration* can be used to add space between
+items. It can be used several times to provide different values for *HORIZONTAL*
+and *VERTICAL* orientations.
+
+```java
+RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+recyclerView.addItemDecoration(new SpacesItemDecoration(16, SpacesItemDecoration.VERTICAL));
+```
+
+The *DisplayHelper* class provides a range of functions for screen measurement
+and to find suitable layout managers for RecyclerView based on the screen width:
+
+```java
+recyclerView.setLayoutManager(DisplayHelper.getSuitableLayoutManager(this));
+```
+
+Array-based adapters are the most common recycler view adapters. Avoid
+re-inventing the whell and subclass from *ArrayAdapter*:
+
+```java
+public final class MyArrayAdapter extends ArrayAdapter<Thing, MyArrayAdapter.MyViewHolder> {
+    public MyArrayAdapter(List<Thing> objects) {
+        super(objects);
+        // ...
+    }
+    
+    static final class MyViewHolder extends RecyclerView.ViewHolder {
+        // ...
+    }
+}
+ 
+public final class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        List<Thing> things = new ArrayList<>();
+        
+        MyAdapter adapter = new Adapter(things);
+        
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView.setAdapter(adapter);
+    }
+}
+```
+
+The recycler view library does not provide Cursor-based adapters. Use
+*CursorRecyclerAdapter* to directly display database data:
+
+```java
+public final class EventAdapter extends CursorRecyclerAdapter<EventAdapter.EventViewHolder> {
+    public EventAdapter(@NonNull Context context) {
+        // ...
+        Cursor cursor = context.getContentResolver()
+                .query(eventsUri, PROJECTION, SELECTION, selectionArgs,
+                        CalendarContract.Instances.DTSTART + " ASC");
+    
+        init(cursor); // See base class
+    }
+    
+    @Override
+    public EventViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // ...
+        return new EventViewHolder(v);
+    }
+    
+    @Override
+    public void onBindViewHolderCursor(final EventViewHolder holder, final Cursor cursor) {
+        // ...
+    }
+    
+    static class EventViewHolder extends RecyclerView.ViewHolder {
+        // ...
+    }
+}
+```
+
+
+The Android SDK does not provide a PreferenceActivity that is based on
+AppCompat. To avoid using the old and deprecated PreferenceActivity or rolling
+your own, subclass from *AppCompatPreferenceActivity* instead:
+
+```java
+public final class SettingsActivity extends AppCompatPreferenceActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        final ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+    // ...
+}
+```
+
 # Download
 ```groovy
-compile 'saschpe:utils:1.0.0'
+compile 'saschpe:utils:1.0.1'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
