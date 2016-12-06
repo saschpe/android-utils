@@ -25,8 +25,8 @@ import android.widget.FilterQueryProvider;
 import android.widget.Filterable;
 
 /**
- * Provide a {@link android.support.v7.widget.RecyclerView.Adapter} implementation with cursor
- * support.
+ * Provide a {@link android.support.v7.widget.RecyclerView.Adapter}
+ * implementation with cursor support.
  *
  * Child classes only need to implement {@link #onCreateViewHolder(android.view.ViewGroup, int)} and
  * {@link #onBindViewHolderCursor(android.support.v7.widget.RecyclerView.ViewHolder, Cursor)}.

@@ -23,14 +23,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * SpacesItemDecoration is a {@link RecyclerView.ItemDecoration} that can be used to add spacing
- * between items of a {@link LinearLayoutManager}. It supports both {@link #HORIZONTAL} and
- * {@link #VERTICAL} orientations.
+ * SpacesItemDecoration is a {@link RecyclerView.ItemDecoration} that can be
+ * used to add spacing between items of a {@link LinearLayoutManager}. It
+ * supports both {@link #HORIZONTAL} and {@link #VERTICAL} orientations.
  *
  * <pre>
- *     mSpacesItemDecoration = new SpacesItemDecoration(recyclerView.getContext(), 16,
- *             mLayoutManager.getOrientation());
- *     recyclerView.addItemDecoration(mDividerItemDecoration);
+ * SpacesItemDecoration spacesItemDecoration = new SpacesItemDecoration(
+ *         recyclerView.getContext(), 16, layoutManager.getOrientation());
+ * recyclerView.addItemDecoration(spacesItemDecoration);
  * </pre>
  */
 public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
