@@ -103,7 +103,7 @@ public final class SettingsActivity extends AppCompatPreferenceActivity {
 
 # Download
 ```groovy
-compile 'saschpe.android:utils:1.0.2'
+compile 'saschpe.android:utils:1.0.3'
 ```
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
