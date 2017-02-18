@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package saschpe.utils.adapter.base;
+package saschpe.android.utils.adapter.base;
 
 import android.support.v7.widget.RecyclerView;
 

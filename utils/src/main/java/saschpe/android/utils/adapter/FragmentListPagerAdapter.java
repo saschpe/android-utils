@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package saschpe.utils.adapter;
+package saschpe.android.utils.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

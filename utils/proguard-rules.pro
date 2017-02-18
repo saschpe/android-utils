@@ -1,2 +1,2 @@
 -keepattributes EnclosingMethod
--keep class saschpe.utils.** { *; }
+-keep class saschpe.android.utils.** { *; }

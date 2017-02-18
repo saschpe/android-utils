@@ -23,8 +23,8 @@ import android.support.v7.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import saschpe.utils.helper.DisplayHelper;
-import saschpe.utils.widget.SpacesItemDecoration;
+import saschpe.android.utils.helper.DisplayHelper;
+import saschpe.android.utils.widget.SpacesItemDecoration;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package saschpe.utils.activity.base;
+package saschpe.android.utils.activity.base;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

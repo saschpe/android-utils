@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package saschpe.utils.widget;
+package saschpe.android.utils.widget;
 
 import android.graphics.Rect;
 import android.support.v7.widget.LinearLayoutManager;

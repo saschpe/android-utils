@@ -15,7 +15,7 @@
   -->
 
 <manifest
-    package="saschpe.utils">
+    package="saschpe.android.utils">
 
     <application />
 

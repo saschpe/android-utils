@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package saschpe.utils.adapter.base;
+package saschpe.android.utils.adapter.base;
 
 import android.database.ContentObserver;
 import android.database.Cursor;

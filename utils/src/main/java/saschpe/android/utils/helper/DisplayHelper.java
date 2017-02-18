@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package saschpe.utils.helper;
+package saschpe.android.utils.helper;
 
 import android.annotation.TargetApi;
 import android.content.Context;

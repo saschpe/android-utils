@@ -22,7 +22,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import saschpe.utils.adapter.base.ArrayAdapter;
+import saschpe.android.utils.adapter.base.ArrayAdapter;
 
 class DummyAdapter extends ArrayAdapter<String, RecyclerView.ViewHolder> {
     DummyAdapter(List<String> objects) {
