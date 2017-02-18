@@ -51,7 +51,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.1'
 }
 
-group = 'saschpe'
+group = 'saschpe.android'
 version = android.defaultConfig.versionName
 
 ext {
