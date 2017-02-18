@@ -1,6 +1,7 @@
 # Android Utils
 [![Download](https://api.bintray.com/packages/saschpe/maven/android-utils/images/download.svg)](https://bintray.com/saschpe/maven/android-utils/_latestVersion)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Build Status](https://travis-ci.org/saschpe/android-utils.svg?branch=master)](https://travis-ci.org/saschpe/android-utils)
 
 This library collects a range of Android classes that I often use in projects.
 
