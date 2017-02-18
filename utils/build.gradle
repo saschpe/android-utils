@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.file) {
+    Properties localProperties = new Properties()
+    localPropertiesFile.withInputStream { localProperties.load(it) }
+    localProperties.each { key, value ->
+        properties.ext.set(key, value)
+    }
+}
 
-Properties properties = new Properties()
-properties.load(project.rootProject.file('gradle.properties').newDataInputStream())
-Properties properties2 = new Properties();
-properties2.load(project.rootProject.file('local.properties').newDataInputStream())
-properties.putAll(properties2);
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
