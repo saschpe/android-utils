@@ -2,7 +2,7 @@
 [![Download](https://api.bintray.com/packages/saschpe/maven/android-utils/images/download.svg)](https://bintray.com/saschpe/maven/android-utils/_latestVersion)
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 [![Build Status](https://travis-ci.org/saschpe/android-utils.svg?branch=master)](https://travis-ci.org/saschpe/android-utils)
-[![Methods and size](https://img.shields.io/badge/Methods and size-core: 156 | deps: 21569 | 27 KB-e91e63.svg)](http://www.methodscount.com/?lib=saschpe.android%3Autils%3A1.0.6)
+<a href="http://www.methodscount.com/?lib=saschpe.android%3Autils%3A1.0.6"><img src="https://img.shields.io/badge/Methods and size-core: 156 | deps: 21569 | 27 KB-e91e63.svg"/></a>
 
 This library collects a range of Android classes that I often use in projects.
 
