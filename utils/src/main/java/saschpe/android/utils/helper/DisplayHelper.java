@@ -32,7 +32,7 @@ public final class DisplayHelper {
         // Intentionally left blank
     }
 
-    public static int getWidestScreenEdgeInPixels(@NonNull Context context) {
+    public static int getWidestScreenEdgeInPixels(final @NonNull Context context) {
         DisplayMetrics displayMetrics = getDisplayMetrics(context);
 
         if (displayMetrics.widthPixels > displayMetrics.heightPixels) {
@@ -41,7 +41,7 @@ public final class DisplayHelper {
         return displayMetrics.heightPixels;
     }
 
-    public static DisplayMetrics getDisplayMetrics(@NonNull Context context) {
+    public static DisplayMetrics getDisplayMetrics(final @NonNull Context context) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return getRealMetrics(context);
         } else {
@@ -50,7 +50,7 @@ public final class DisplayHelper {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    private static DisplayMetrics getRealMetrics(Context context) {
+    private static DisplayMetrics getRealMetrics(final @NonNull Context context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         DisplayMetrics outMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getRealMetrics(outMetrics);
@@ -58,7 +58,7 @@ public final class DisplayHelper {
         return outMetrics;
     }
 
-    private static DisplayMetrics getMetricsWithoutNavigationBar(Context context) {
+    private static DisplayMetrics getMetricsWithoutNavigationBar(final @NonNull Context context) {
         return context.getResources().getDisplayMetrics();
     }
 
@@ -66,28 +66,38 @@ public final class DisplayHelper {
      * Helper method to determine if the device has an extra-large screen. For
      * example, 10" tablets are extra-large.
      */
-    public static boolean isXLargeTablet(Context context) {
+    public static boolean isXLargeTablet(final @NonNull Context context) {
         return (context.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_XLARGE;
     }
 
-    public static boolean isSW320DP(Context context) {
+    public static boolean isSW320DP(final @NonNull Context context) {
         return context.getResources().getConfiguration().smallestScreenWidthDp >= 320;
     }
 
-    public static boolean isSW400DP(Context context) {
+    public static boolean isSW400DP(final @NonNull Context context) {
         return context.getResources().getConfiguration().smallestScreenWidthDp >= 400;
     }
 
-    public static boolean isW600DP(Context context) {
+    public static boolean isW600DP(final @NonNull Context context) {
         return context.getResources().getConfiguration().screenWidthDp >= 600;
     }
 
-    public static boolean isLandscape(Context context) {
+    public static boolean isLandscape(final @NonNull Context context) {
         return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
-    public static RecyclerView.LayoutManager getSuitableLayoutManager(Context context) {
+    public static int getSuitableGridLayoutManagerSpanCount(final @NonNull Context context) {
+        if (DisplayHelper.isXLargeTablet(context)) {
+            return DisplayHelper.isLandscape(context) ? 3 : 2;
+        } else if (DisplayHelper.isW600DP(context)) {
+            return DisplayHelper.isLandscape(context) ? 2 : 1;
+        } else {
+            return 1;
+        }
+    }
+
+    public static RecyclerView.LayoutManager getSuitableLayoutManager(final @NonNull Context context) {
         if (DisplayHelper.isXLargeTablet(context)) {
             return new GridLayoutManager(context, DisplayHelper.isLandscape(context) ? 3 : 2);
         } else if (DisplayHelper.isW600DP(context)) {

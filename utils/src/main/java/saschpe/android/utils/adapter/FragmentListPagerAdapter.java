@@ -16,6 +16,7 @@
 
 package saschpe.android.utils.adapter;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -49,11 +50,11 @@ public final class FragmentListPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> fragments = new ArrayList<>();
     private final List<CharSequence> titles = new ArrayList<>();
 
-    public FragmentListPagerAdapter(FragmentManager fragmentManager) {
+    public FragmentListPagerAdapter(final @NonNull FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
-    public void addFragment(Fragment fragment, CharSequence title) {
+    public void addFragment(final @NonNull Fragment fragment, final @NonNull CharSequence title) {
         fragments.add(fragment);
         titles.add(title);
     }
