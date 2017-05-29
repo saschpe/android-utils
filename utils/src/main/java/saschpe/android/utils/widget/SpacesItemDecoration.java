@@ -37,7 +37,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
     public static final int VERTICAL = OrientationHelper.VERTICAL;
 
-    private int space;
+    private final int space;
 
     /**
      * Current orientation. Either {@link #HORIZONTAL} or {@link #VERTICAL}.

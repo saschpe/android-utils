@@ -26,8 +26,7 @@ import java.util.List;
 import saschpe.android.utils.helper.DisplayHelper;
 import saschpe.android.utils.widget.SpacesItemDecoration;
 
-public class MainActivity extends AppCompatActivity {
-    private RecyclerView recyclerView;
+public final class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<String> values = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.addItemDecoration(new SpacesItemDecoration(16, SpacesItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(DisplayHelper.getSuitableLayoutManager(this));
         recyclerView.setAdapter(new DummyAdapter(values));

@@ -27,8 +27,7 @@ import java.util.List;
 /**
  * Generic list-based {@link Fragment} pager adapter.
  * <p>
- * Simplifies usage of {@link android.support.v4.view.ViewPager} and
- * {@link android.support.design.widget.TabLayout}.
+ * Simplifies usage of {@link android.support.v4.view.ViewPager}.
  *
  * <pre>
  * // Set up fragment pager adapter
