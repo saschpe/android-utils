@@ -34,7 +34,6 @@ public final class DisplayHelper {
 
     public static int getWidestScreenEdgeInPixels(final @NonNull Context context) {
         DisplayMetrics displayMetrics = getDisplayMetrics(context);
-
         if (displayMetrics.widthPixels > displayMetrics.heightPixels) {
             return displayMetrics.widthPixels;
         }
@@ -45,7 +44,8 @@ public final class DisplayHelper {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             return getRealMetrics(context);
         } else {
-            return getMetricsWithoutNavigationBar(context);
+            // Get metrics without navigation bar
+            return context.getResources().getDisplayMetrics();
         }
     }
 
@@ -56,10 +56,6 @@ public final class DisplayHelper {
         windowManager.getDefaultDisplay().getRealMetrics(outMetrics);
 
         return outMetrics;
-    }
-
-    private static DisplayMetrics getMetricsWithoutNavigationBar(final @NonNull Context context) {
-        return context.getResources().getDisplayMetrics();
     }
 
     /**
@@ -87,23 +83,23 @@ public final class DisplayHelper {
         return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 
-    public static int getSuitableGridLayoutManagerSpanCount(final @NonNull Context context) {
-        if (DisplayHelper.isXLargeTablet(context)) {
-            return DisplayHelper.isLandscape(context) ? 3 : 2;
-        } else if (DisplayHelper.isW600DP(context)) {
-            return DisplayHelper.isLandscape(context) ? 2 : 1;
+    public static RecyclerView.LayoutManager getSuitableLayoutManager(final @NonNull Context context) {
+        if (isXLargeTablet(context)) {
+            return new GridLayoutManager(context, isLandscape(context) ? 3 : 2);
+        } else if (isW600DP(context)) {
+            return new GridLayoutManager(context, isLandscape(context) ? 2 : 1);
         } else {
-            return 1;
+            return new LinearLayoutManager(context);
         }
     }
 
-    public static RecyclerView.LayoutManager getSuitableLayoutManager(final @NonNull Context context) {
-        if (DisplayHelper.isXLargeTablet(context)) {
-            return new GridLayoutManager(context, DisplayHelper.isLandscape(context) ? 3 : 2);
-        } else if (DisplayHelper.isW600DP(context)) {
-            return new GridLayoutManager(context, DisplayHelper.isLandscape(context) ? 2 : 1);
+    public static int getSuitableGridLayoutManagerSpanCount(final @NonNull Context context) {
+        if (isXLargeTablet(context)) {
+            return isLandscape(context) ? 3 : 2;
+        } else if (isW600DP(context)) {
+            return isLandscape(context) ? 2 : 1;
         } else {
-            return new LinearLayoutManager(context);
+            return 1;
         }
     }
 }
