@@ -32,7 +32,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(JUnit4.class)
-public class ArrayAdapterTest {
+public final class ArrayAdapterTest {
     private static final List<String> TEST_VALUES = Arrays.asList("one", "two", "three");
     private TestArrayAdapter arrayAdapter;
 

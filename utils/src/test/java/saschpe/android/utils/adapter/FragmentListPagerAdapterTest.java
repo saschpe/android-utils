@@ -33,7 +33,7 @@ import static junit.framework.Assert.assertSame;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
-public class FragmentListPagerAdapterTest {
+public final class FragmentListPagerAdapterTest {
     private FragmentListPagerAdapter adapter;
 
     @Before
@@ -45,7 +45,7 @@ public class FragmentListPagerAdapterTest {
     }
 
     @Test
-    public void testAddingFragments() {
+    public void addFragment_canAddTwoFragments() {
         TestFragment testFragment1 = new TestFragment();
         TestFragment testFragment2 = new TestFragment();
 
@@ -59,6 +59,6 @@ public class FragmentListPagerAdapterTest {
         assertSame(testFragment2, adapter.getItem(1));
     }
 
-    public static class TestFragment extends Fragment {
+    public static final class TestFragment extends Fragment {
     }
 }

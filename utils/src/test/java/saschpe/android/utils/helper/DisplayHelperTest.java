@@ -35,7 +35,7 @@ import static org.junit.Assert.assertTrue;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(constants = BuildConfig.class)
-public class DisplayHelperTest {
+public final class DisplayHelperTest {
     @Test
     public void testGetWidestScreenEdgeInPixels() {
         int widestEdge = DisplayHelper.getWidestScreenEdgeInPixels(RuntimeEnvironment.application);
