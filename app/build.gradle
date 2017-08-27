@@ -33,6 +33,6 @@ android {
 
 dependencies {
     // Runtime dependencies
-    compile project(':utils')
-    compile 'com.android.support:appcompat-v7:26.0.1'
+    implementation project(':utils')
+    implementation 'com.android.support:appcompat-v7:26.0.1'
 }
