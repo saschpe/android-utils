@@ -17,13 +17,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.1'
 
     defaultConfig {
         applicationId 'com.example.utils'
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 140110
         versionName '1.0.8.2'
         archivesBaseName = "${applicationId}-${versionName}"
@@ -38,5 +38,5 @@ android {
 dependencies {
     // Runtime dependencies
     compile project(':utils')
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:appcompat-v7:26.0.1'
 }
