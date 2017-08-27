@@ -52,6 +52,9 @@ public final class DisplayHelper {
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private static DisplayMetrics getRealMetrics(final @NonNull Context context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        if (windowManager == null) {
+            return null;
+        }
         DisplayMetrics outMetrics = new DisplayMetrics();
         windowManager.getDefaultDisplay().getRealMetrics(outMetrics);
 

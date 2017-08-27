@@ -35,7 +35,7 @@ final class CursorFilter extends Filter {
         void changeCursor(Cursor cursor);
     }
 
-    CursorFilter(CursorFilterClient client) {
+    CursorFilter(final CursorFilterClient client) {
         this.client = client;
     }
 

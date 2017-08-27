@@ -101,7 +101,7 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
      *
      * @param object The object to remove.
      */
-    public void remove(T object) {
+    public void remove(final T object) {
         final int position = getPosition(object);
         objects.remove(object);
         notifyItemRemoved(position);
@@ -112,7 +112,7 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
      *
      * @param comparator The comparator used to sort the objects contained in this adapter.
      */
-    public void sort(Comparator<? super T> comparator) {
+    public void sort(final Comparator<? super T> comparator) {
         Collections.sort(objects, comparator);
         notifyItemRangeChanged(0, getItemCount());
     }

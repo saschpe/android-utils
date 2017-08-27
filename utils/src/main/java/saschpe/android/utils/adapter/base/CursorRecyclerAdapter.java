@@ -44,33 +44,30 @@ import android.widget.Filterable;
 public abstract class CursorRecyclerAdapter<VH
         extends android.support.v7.widget.RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH>
         implements Filterable, CursorFilter.CursorFilterClient {
-    private boolean mDataValid;
-    private int mRowIDColumn;
-    private Cursor mCursor;
-    private ChangeObserver mChangeObserver;
-    private DataSetObserver mDataSetObserver;
-    private CursorFilter mCursorFilter;
-    private FilterQueryProvider mFilterQueryProvider;
+    private boolean dataValid;
+    private int rowIDColumn;
+    private Cursor cursor;
+    private ChangeObserver changeObserver;
+    private DataSetObserver dataSetObserver;
+    private CursorFilter cursorFilter;
+    private FilterQueryProvider filterQueryProvider;
 
-    public CursorRecyclerAdapter() {
-    }
-
-    public CursorRecyclerAdapter(Cursor cursor) {
+    public CursorRecyclerAdapter(final Cursor cursor) {
         init(cursor);
     }
 
-    protected void init(Cursor c) {
-        boolean cursorPresent = c != null;
-        mCursor = c;
-        mDataValid = cursorPresent;
-        mRowIDColumn = cursorPresent ? c.getColumnIndexOrThrow("_id") : -1;
+    protected void init(final Cursor cursor) {
+        boolean cursorPresent = cursor != null;
+        this.cursor = cursor;
+        dataValid = cursorPresent;
+        rowIDColumn = cursorPresent ? cursor.getColumnIndexOrThrow("_id") : -1;
 
-        mChangeObserver = new ChangeObserver();
-        mDataSetObserver = new MyDataSetObserver();
+        changeObserver = new ChangeObserver();
+        dataSetObserver = new MyDataSetObserver();
 
         if (cursorPresent) {
-            if (mChangeObserver != null) c.registerContentObserver(mChangeObserver);
-            if (mDataSetObserver != null) c.registerDataSetObserver(mDataSetObserver);
+            if (changeObserver != null) cursor.registerContentObserver(changeObserver);
+            if (dataSetObserver != null) cursor.registerDataSetObserver(dataSetObserver);
         }
     }
 
@@ -84,13 +81,13 @@ public abstract class CursorRecyclerAdapter<VH
      */
     @Override
     public void onBindViewHolder(VH holder, int i){
-        if (!mDataValid) {
+        if (!dataValid) {
             throw new IllegalStateException("this should only be called when the cursor is valid");
         }
-        if (!mCursor.moveToPosition(i)) {
+        if (!cursor.moveToPosition(i)) {
             throw new IllegalStateException("couldn't move cursor to position " + i);
         }
-        onBindViewHolderCursor(holder, mCursor);
+        onBindViewHolderCursor(holder, cursor);
     }
 
     /**
@@ -106,8 +103,8 @@ public abstract class CursorRecyclerAdapter<VH
 
     @Override
     public int getItemCount() {
-        if (mDataValid && mCursor != null) {
-            return mCursor.getCount();
+        if (dataValid && cursor != null) {
+            return cursor.getCount();
         } else {
             return 0;
         }
@@ -118,9 +115,9 @@ public abstract class CursorRecyclerAdapter<VH
      */
     @Override
     public long getItemId(int position) {
-        if (mDataValid && mCursor != null) {
-            if (mCursor.moveToPosition(position)) {
-                return mCursor.getLong(mRowIDColumn);
+        if (dataValid && cursor != null) {
+            if (cursor.moveToPosition(position)) {
+                return cursor.getLong(rowIDColumn);
             } else {
                 return 0;
             }
@@ -130,7 +127,7 @@ public abstract class CursorRecyclerAdapter<VH
     }
 
     public Cursor getCursor(){
-        return mCursor;
+        return cursor;
     }
 
     /**
@@ -139,7 +136,7 @@ public abstract class CursorRecyclerAdapter<VH
      *
      * @param cursor The new cursor to be used
      */
-    public void changeCursor(Cursor cursor) {
+    public void changeCursor(final Cursor cursor) {
         Cursor old = swapCursor(cursor);
         if (old != null) {
             old.close();
@@ -156,26 +153,26 @@ public abstract class CursorRecyclerAdapter<VH
      * If the given new Cursor is the same instance is the previously set
      * Cursor, null is also returned.
      */
-    public Cursor swapCursor(Cursor newCursor) {
-        if (newCursor == mCursor) {
+    public Cursor swapCursor(final Cursor newCursor) {
+        if (newCursor == cursor) {
             return null;
         }
-        Cursor oldCursor = mCursor;
+        Cursor oldCursor = cursor;
         if (oldCursor != null) {
-            if (mChangeObserver != null) oldCursor.unregisterContentObserver(mChangeObserver);
-            if (mDataSetObserver != null) oldCursor.unregisterDataSetObserver(mDataSetObserver);
+            if (changeObserver != null) oldCursor.unregisterContentObserver(changeObserver);
+            if (dataSetObserver != null) oldCursor.unregisterDataSetObserver(dataSetObserver);
         }
-        mCursor = newCursor;
+        cursor = newCursor;
         if (newCursor != null) {
-            if (mChangeObserver != null) newCursor.registerContentObserver(mChangeObserver);
-            if (mDataSetObserver != null) newCursor.registerDataSetObserver(mDataSetObserver);
-            mRowIDColumn = newCursor.getColumnIndexOrThrow("_id");
-            mDataValid = true;
+            if (changeObserver != null) newCursor.registerContentObserver(changeObserver);
+            if (dataSetObserver != null) newCursor.registerDataSetObserver(dataSetObserver);
+            rowIDColumn = newCursor.getColumnIndexOrThrow("_id");
+            dataValid = true;
             // notify the observers about the new cursor
             notifyDataSetChanged();
         } else {
-            mRowIDColumn = -1;
-            mDataValid = false;
+            rowIDColumn = -1;
+            dataValid = false;
             // notify the observers about the lack of a data set
             // notifyDataSetInvalidated();
             notifyItemRangeRemoved(0, getItemCount());
@@ -192,7 +189,7 @@ public abstract class CursorRecyclerAdapter<VH
      * @param cursor the cursor to convert to a CharSequence
      * @return a CharSequence representing the value
      */
-    public CharSequence convertToString(Cursor cursor) {
+    public CharSequence convertToString(final Cursor cursor) {
         return cursor == null ? "" : cursor.toString();
     }
 
@@ -221,19 +218,19 @@ public abstract class CursorRecyclerAdapter<VH
      * @see #getFilterQueryProvider()
      * @see #setFilterQueryProvider(FilterQueryProvider)
      */
-    public Cursor runQueryOnBackgroundThread(CharSequence constraint) {
-        if (mFilterQueryProvider != null) {
-            return mFilterQueryProvider.runQuery(constraint);
+    public Cursor runQueryOnBackgroundThread(final CharSequence constraint) {
+        if (filterQueryProvider != null) {
+            return filterQueryProvider.runQuery(constraint);
         }
 
-        return mCursor;
+        return cursor;
     }
 
     public Filter getFilter() {
-        if (mCursorFilter == null) {
-            mCursorFilter = new CursorFilter(this);
+        if (cursorFilter == null) {
+            cursorFilter = new CursorFilter(this);
         }
-        return mCursorFilter;
+        return cursorFilter;
     }
 
     /**
@@ -246,7 +243,7 @@ public abstract class CursorRecyclerAdapter<VH
      * @see #runQueryOnBackgroundThread(CharSequence)
      */
     public FilterQueryProvider getFilterQueryProvider() {
-        return mFilterQueryProvider;
+        return filterQueryProvider;
     }
 
     /**
@@ -262,7 +259,7 @@ public abstract class CursorRecyclerAdapter<VH
      * @see #runQueryOnBackgroundThread(CharSequence)
      */
     public void setFilterQueryProvider(FilterQueryProvider filterQueryProvider) {
-        mFilterQueryProvider = filterQueryProvider;
+        this.filterQueryProvider = filterQueryProvider;
     }
 
     /**
@@ -293,16 +290,15 @@ public abstract class CursorRecyclerAdapter<VH
     private final class MyDataSetObserver extends DataSetObserver {
         @Override
         public void onChanged() {
-            mDataValid = true;
+            dataValid = true;
             notifyDataSetChanged();
         }
 
         @Override
         public void onInvalidated() {
-            mDataValid = false;
+            dataValid = false;
             // notifyDataSetInvalidated();
             notifyItemRangeRemoved(0, getItemCount());
         }
     }
-
 }

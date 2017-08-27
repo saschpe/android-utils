@@ -34,7 +34,7 @@ public final class MainActivity extends AppCompatActivity {
 
         List<String> values = new ArrayList<>();
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.addItemDecoration(new SpacesItemDecoration(16, SpacesItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(DisplayHelper.getSuitableLayoutManager(this));
         recyclerView.setAdapter(new DummyAdapter(values));

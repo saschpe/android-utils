@@ -44,7 +44,9 @@ import java.util.List;
  * tabLayout.setTabMode(TabLayout.MODE_FIXED);
  * tabLayout.setupWithViewPager(viewPager);
  * </pre>
+ * @deprecated Rather implement your own. Will be dropped soon!
  */
+@Deprecated
 public final class FragmentListPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> fragments = new ArrayList<>();
     private final List<CharSequence> titles = new ArrayList<>();

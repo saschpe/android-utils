@@ -33,7 +33,7 @@ import android.view.View;
  * recyclerView.addItemDecoration(spacesItemDecoration);
  * </pre>
  */
-public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+public final class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
     public static final int VERTICAL = OrientationHelper.VERTICAL;
 
@@ -51,7 +51,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
      * @param space Item spacing in PX
      * @param orientation {@link #HORIZONTAL} or {@link #VERTICAL}
      */
-    public SpacesItemDecoration(int space, int orientation) {
+    public SpacesItemDecoration(final int space, final int orientation) {
         this.space = space;
         setOrientation(orientation);
     }
@@ -62,7 +62,7 @@ public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
      *
      * @param orientation {@link #HORIZONTAL} or {@link #VERTICAL}
      */
-    public void setOrientation(int orientation) {
+    public void setOrientation(final int orientation) {
         if (orientation != HORIZONTAL && orientation != VERTICAL) {
             throw new IllegalArgumentException(
                     "Invalid orientation. It should be either HORIZONTAL or VERTICAL");
