@@ -110,6 +110,10 @@ compile 'saschpe.android:utils:1.0.9'
 
 Snapshots of the development version are available in [Sonatype's `snapshots` repository][snap].
 
+# In use by
+* [Alpha+ Player](https://play.google.com/store/apps/details?id=saschpe.alphaplus)
+* [Birthday Calendar](https://play.google.com/store/apps/details?id=saschpe.contactevents) - Open Source on [Github](https://github.com/saschpe/BirthdayCalendar/)
+* [Planning Poker](https://play.google.com/store/apps/details?id=saschpe.poker) - Open Source on [Github](https://github.com/saschpe/PlanningPoker)
 
 # License
 
