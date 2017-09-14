@@ -34,5 +34,5 @@ android {
 dependencies {
     // Runtime dependencies
     implementation project(':utils')
-    implementation 'com.android.support:appcompat-v7:26.0.1'
+    implementation 'com.android.support:appcompat-v7:26.0.2'
 }
