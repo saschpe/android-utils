@@ -35,33 +35,6 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
         }
     }
 
-    /**
-     * Adds the specified object at the end of the array.
-     *
-     * @param object The object to add at the end of the array.
-     */
-    public void add(final T object) {
-        objects.add(object);
-        notifyItemInserted(getItemCount() - 1);
-    }
-
-    /**
-     * Remove all elements from the list.
-     */
-    public void clear() {
-        final int size = getItemCount();
-        objects.clear();
-        notifyItemRangeRemoved(0, size);
-    }
-
-    /**
-     * Replace all elements with a new list.
-     */
-    public void replaceAll(final List<T> objects) {
-        this.objects = objects;
-        notifyDataSetChanged();
-    }
-
     @Override
     public int getItemCount() {
         return objects.size();
@@ -86,14 +59,53 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
     }
 
     /**
+     * Adds the specified object at the end of the array.
+     *
+     * @param object The object to add at the end of the array.
+     */
+    public boolean add(final T object) {
+        objects.add(object);
+        notifyItemInserted(getItemCount() - 1);
+        return true;
+    }
+
+    /**
      * Inserts the specified object at the specified index in the array.
      *
+     * @param position The index at which the object must be inserted.
      * @param object The object to insert into the array.
-     * @param index  The index at which the object must be inserted.
      */
-    public void insert(final T object, int index) {
-        objects.add(index, object);
-        notifyItemInserted(index);
+    public void insert(int position, final T object) {
+        objects.add(position, object);
+        notifyItemInserted(position);
+    }
+
+    /**
+     * Updates the specified object at the specified index in the array.
+     *
+     * @param position The index at which the object must be inserted.
+     * @param object The object to insert into the array.
+     */
+    public T set(int position, final T object) {
+        T old = objects.set(position, object);
+        notifyItemChanged(position);
+        return old;
+    }
+
+    /**
+     * Replace the specified object at the specified index in the array.
+     *
+     * @param old The object to replace.
+     * @param object The object to insert into the array.
+     */
+    public void replaceOrAdd(final T old, final T object) {
+        final int position = getPosition(old);
+        if (position >= 0) {
+            objects.set(position, object);
+            notifyItemChanged(position);
+        } else {
+            add(object);
+        }
     }
 
     /**
@@ -101,10 +113,31 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
      *
      * @param object The object to remove.
      */
-    public void remove(final T object) {
+    public boolean remove(final T object) {
         final int position = getPosition(object);
-        objects.remove(object);
-        notifyItemRemoved(position);
+        if (position >= 0) {
+            objects.remove(object);
+            notifyItemRemoved(position);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Replace all elements with a new list.
+     */
+    public void replaceAll(final List<T> objects) {
+        this.objects = objects;
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Remove all elements from the list.
+     */
+    public void clear() {
+        final int size = getItemCount();
+        objects.clear();
+        notifyItemRangeRemoved(0, size);
     }
 
     /**

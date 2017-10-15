@@ -16,7 +16,6 @@
 
 package saschpe.android.utils.adapter.base;
 
-
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -24,14 +23,18 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import java.util.Arrays;
 import java.util.List;
 
+import saschpe.android.utils.BuildConfig;
+
 import static org.junit.Assert.assertEquals;
 
-@RunWith(JUnit4.class)
+@RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class)
 public final class ArrayAdapterTest {
     private static final List<String> TEST_VALUES = Arrays.asList("one", "two", "three");
     private TestArrayAdapter arrayAdapter;
@@ -74,7 +77,7 @@ public final class ArrayAdapterTest {
 
     @Ignore
     public void testInsert() {
-        arrayAdapter.insert("new", 1);
+        arrayAdapter.insert(1, "new");
         assertEquals(1, arrayAdapter.getPosition("new"));
         assertEquals("new", arrayAdapter.getItem(1));
     }
@@ -85,8 +88,8 @@ public final class ArrayAdapterTest {
         assertEquals(-1, arrayAdapter.getPosition("two"));
     }
 
-    private static class TestArrayAdapter extends ArrayAdapter<String, RecyclerView.ViewHolder> {
-        TestArrayAdapter(List<String> objects) {
+    private static final class TestArrayAdapter extends ArrayAdapter<String, RecyclerView.ViewHolder> {
+        TestArrayAdapter(final List<String> objects) {
             super(objects);
         }
 
