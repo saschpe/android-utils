@@ -19,17 +19,18 @@ import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.DataSetObserver;
 import android.os.Handler;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Filter;
 import android.widget.FilterQueryProvider;
 import android.widget.Filterable;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
- * Provide a {@link android.support.v7.widget.RecyclerView.Adapter}
+ * Provide a {@link RecyclerView.Adapter}
  * implementation with cursor support.
  *
  * Child classes only need to implement {@link #onCreateViewHolder(android.view.ViewGroup, int)} and
- * {@link #onBindViewHolderCursor(android.support.v7.widget.RecyclerView.ViewHolder, Cursor)}.
+ * {@link #onBindViewHolderCursor( RecyclerView.ViewHolder, Cursor)}.
  *
  * This class does not implement deprecated fields and methods from CursorAdapter! Incidentally,
  * only {@link android.widget.CursorAdapter#FLAG_REGISTER_CONTENT_OBSERVER} is available, so the
@@ -37,12 +38,12 @@ import android.widget.Filterable;
  *
  * @param <VH> {@inheritDoc}
  *
- * @see android.support.v7.widget.RecyclerView.Adapter
+ * @see RecyclerView.Adapter
  * @see android.widget.CursorAdapter
  * @see Filterable
  */
 public abstract class CursorRecyclerAdapter<VH
-        extends android.support.v7.widget.RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH>
+        extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH>
         implements Filterable, CursorFilter.CursorFilterClient {
     private boolean dataValid;
     private int rowIDColumn;
@@ -73,7 +74,7 @@ public abstract class CursorRecyclerAdapter<VH
 
     /**
      * This method will move the Cursor to the correct position and call
-     * {@link #onBindViewHolderCursor(android.support.v7.widget.RecyclerView.ViewHolder,
+     * {@link #onBindViewHolderCursor( RecyclerView.ViewHolder,
      * Cursor)}.
      *
      * @param holder {@inheritDoc}
@@ -93,7 +94,7 @@ public abstract class CursorRecyclerAdapter<VH
     /**
      * See {@link android.widget.CursorAdapter#bindView(android.view.View, android.content.Context,
      * Cursor)},
-     * {@link #onBindViewHolder(android.support.v7.widget.RecyclerView.ViewHolder, int)}
+     * {@link #onBindViewHolder( RecyclerView.ViewHolder, int)}
      *
      * @param holder View holder.
      * @param cursor The cursor from which to get the data. The cursor is already

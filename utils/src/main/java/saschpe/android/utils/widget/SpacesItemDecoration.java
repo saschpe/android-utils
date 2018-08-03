@@ -17,10 +17,11 @@
 package saschpe.android.utils.widget;
 
 import android.graphics.Rect;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * SpacesItemDecoration is a {@link RecyclerView.ItemDecoration} that can be

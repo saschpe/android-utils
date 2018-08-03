@@ -17,21 +17,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId 'com.example.utils'
         minSdkVersion 14
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 140112
         versionName '1.2.0'
         archivesBaseName = "${applicationId}-${versionName}"
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 }
 
 dependencies {
     // Runtime dependencies
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation project(':utils')
-    implementation 'com.android.support:appcompat-v7:27.1.1'
 }

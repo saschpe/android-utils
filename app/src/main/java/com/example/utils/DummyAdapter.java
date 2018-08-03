@@ -16,12 +16,12 @@
 
 package com.example.utils;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import saschpe.android.utils.adapter.base.ArrayAdapter;
 
 final class DummyAdapter extends ArrayAdapter<String, RecyclerView.ViewHolder> {
