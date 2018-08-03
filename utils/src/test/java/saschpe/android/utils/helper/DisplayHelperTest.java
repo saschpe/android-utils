@@ -49,9 +49,9 @@ public final class DisplayHelperTest {
 
         assertNotNull(displayMetrics);
         //assertEquals(1.0, displayMetrics.density, 0.0);
-        assertEquals(480, displayMetrics.widthPixels);
+        assertEquals(320, displayMetrics.widthPixels);
         //assertEquals(800, displayMetrics.heightPixels);
-        assertEquals(240, displayMetrics.densityDpi);
+        assertEquals(160, displayMetrics.densityDpi);
     }
 
     @Test

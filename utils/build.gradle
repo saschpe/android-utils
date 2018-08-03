@@ -31,12 +31,12 @@ if (localPropertiesFile.file) {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionName '1.2.0'
     }
 
@@ -54,14 +54,14 @@ android {
 
 dependencies {
     // Runtime dependencies
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support:recyclerview-v7:26.1.0'
+    api 'com.android.support:appcompat-v7:27.1.1'
+    api 'com.android.support:recyclerview-v7:27.1.1'
 
     // Test dependencies
     testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-core:2.9.0'
-    testImplementation 'org.robolectric:robolectric:3.4.2'
-    testImplementation 'org.robolectric:supportv4:3.4.2'
+    testImplementation 'org.mockito:mockito-core:2.19.0'
+    testImplementation 'org.robolectric:robolectric:3.8'
+    testImplementation 'org.robolectric:shadows-supportv4:3.8'
 }
 
 group = 'saschpe.android'
