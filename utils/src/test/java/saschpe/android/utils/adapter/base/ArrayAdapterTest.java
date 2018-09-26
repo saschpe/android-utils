@@ -16,7 +16,6 @@
 
 package saschpe.android.utils.adapter.base;
 
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import org.junit.Before;
@@ -29,6 +28,8 @@ import org.robolectric.annotation.Config;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import saschpe.android.utils.BuildConfig;
 
 import static org.junit.Assert.assertEquals;
@@ -94,12 +95,12 @@ public final class ArrayAdapterTest {
         }
 
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return null;
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         }
     }
 }

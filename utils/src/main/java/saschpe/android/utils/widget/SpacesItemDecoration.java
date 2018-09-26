@@ -19,6 +19,7 @@ package saschpe.android.utils.widget;
 import android.graphics.Rect;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,7 +50,7 @@ public final class SpacesItemDecoration extends RecyclerView.ItemDecoration {
      * Sets the orientation for this divider. This should be called if
      * {@link RecyclerView.LayoutManager} changes orientation.
      *
-     * @param space Item spacing in PX
+     * @param space       Item spacing in PX
      * @param orientation {@link #HORIZONTAL} or {@link #VERTICAL}
      */
     public SpacesItemDecoration(final int space, final int orientation) {
@@ -72,7 +73,7 @@ public final class SpacesItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         if (orientation == HORIZONTAL) {
             outRect.left = space;
             outRect.right = space;
