@@ -25,6 +25,7 @@ import android.widget.Filter;
  * and convert the results into String that can be used by auto-completion
  * widgets.</p>
  */
+@Deprecated
 final class CursorFilter extends Filter {
     private final CursorFilterClient client;
 

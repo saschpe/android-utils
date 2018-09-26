@@ -43,6 +43,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * @see android.widget.CursorAdapter
  * @see Filterable
  */
+@Deprecated
 public abstract class CursorRecyclerAdapter<VH
         extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH>
         implements Filterable, CursorFilter.CursorFilterClient {
