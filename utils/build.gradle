@@ -95,7 +95,7 @@ afterEvaluate { // https://groups.google.com/forum/#!topic/adt-dev/kzbEHAGbFVg
             version this.version
 
             artifact bundleReleaseAar
-            artifact androidJavadocsJar
+            //artifact androidJavadocsJar
             artifact androidSourcesJar
 
             pom.withXml {

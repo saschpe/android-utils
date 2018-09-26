@@ -23,10 +23,20 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Base class for array-like RecyclerView adapters.
+ * @param <T> Object type
+ * @param <VH> ViewHolder type
+ */
 public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
         extends RecyclerView.Adapter<VH> {
     private List<T> objects;
 
+    /**
+     * Standard constructor.
+     *
+     * @param objects List to initialize the adapter with
+     */
     public ArrayAdapter(final List<T> objects) {
         if (objects == null) {
             this.objects = new ArrayList<>();
@@ -62,6 +72,7 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
      * Adds the specified object at the end of the array.
      *
      * @param object The object to add at the end of the array.
+     * @return True, in case of success
      */
     public boolean add(final T object) {
         objects.add(object);
@@ -73,7 +84,7 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
      * Inserts the specified object at the specified index in the array.
      *
      * @param position The index at which the object must be inserted.
-     * @param object The object to insert into the array.
+     * @param object   The object to insert into the array.
      */
     public void insert(int position, final T object) {
         objects.add(position, object);
@@ -84,7 +95,8 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
      * Updates the specified object at the specified index in the array.
      *
      * @param position The index at which the object must be inserted.
-     * @param object The object to insert into the array.
+     * @param object   The object to insert into the array.
+     * @return The object found previously at the insert position
      */
     public T set(int position, final T object) {
         T old = objects.set(position, object);
@@ -95,7 +107,7 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
     /**
      * Replace the specified object at the specified index in the array.
      *
-     * @param old The object to replace.
+     * @param old    The object to replace.
      * @param object The object to insert into the array.
      */
     public void replaceOrAdd(final T old, final T object) {
@@ -112,6 +124,7 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
      * Removes the specified object from the array.
      *
      * @param object The object to remove.
+     * @return True, in case of success
      */
     public boolean remove(final T object) {
         final int position = getPosition(object);
@@ -125,6 +138,8 @@ public abstract class ArrayAdapter<T, VH extends RecyclerView.ViewHolder>
 
     /**
      * Replace all elements with a new list.
+     *
+     * @param objects The object to replace the array with.
      */
     public void replaceAll(final List<T> objects) {
         this.objects = objects;
